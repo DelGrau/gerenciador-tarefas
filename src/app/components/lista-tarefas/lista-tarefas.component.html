@@ -1,0 +1,11 @@
+<h1 class="title">{{ title }}</h1>
+
+<app-nova-tarefa (tarefaAdicionada)="adicionarTarefa($event)"></app-nova-tarefa>
+
+@if (tarefas.length === 0) {
+    <p class="task-list">Nenhuma tarefa encontrada. Adicione uma nova!</p>
+} @else {
+    @for (tarefa of tarefas; track tarefa.id) {
+        <app-task-item [tarefa]="tarefa" (tarefaAtualizada)="atualizarLista()"></app-task-item>
+    }
+}
