@@ -1,0 +1,10 @@
+<div class="task-item" [class.concluida]="tarefa.concluida" [ngClass]="{ 'removendo': removendo }">
+    <span>{{ tarefa.descricao }}</span>
+    <button (click)="marcarConcluida()">
+      ✅ <!-- Ícone de check -->
+    </button>
+    <button (click)="removerTarefa()">
+      ❌ <!-- Ícone de lixeira -->
+    </button>
+  </div>
+  
