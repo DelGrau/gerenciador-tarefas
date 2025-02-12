@@ -2,6 +2,12 @@
 
 <app-nova-tarefa (tarefaAdicionada)="adicionarTarefa($event)"></app-nova-tarefa>
 
+<div class="filtro-container">
+    <button (click)="setFiltro('todas')" [class.ativo]="filtro === 'todas'">Todas</button>
+    <button (click)="setFiltro('pendentes')" [class.ativo]="filtro === 'pendentes'">Pendentes</button>
+    <button (click)="setFiltro('concluidas')" [class.ativo]="filtro === 'concluidas'">Concluídas</button>
+  </div>
+
 @if (tarefas.length === 0) {
     <p class="task-list">Nenhuma tarefa encontrada. Adicione uma nova!</p>
 } @else {

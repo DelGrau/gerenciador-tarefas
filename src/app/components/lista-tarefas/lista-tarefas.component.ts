@@ -13,6 +13,7 @@ import { NovaTarefaComponent } from "../nova-tarefa/nova-tarefa.component";
 export class ListaTarefasComponent implements OnInit{
   title = "Minhas Tarefas";
   tarefas: Tarefa[] = [];
+  filtro = 'todas'; // todas, pendentes, concluidas
 
   // declarando o Service
   constructor(private taskService: TaskServiceService) {}
@@ -40,6 +41,19 @@ export class ListaTarefasComponent implements OnInit{
   }
 
   atualizarLista() {
-    this.tarefas = this.taskService.getTarefas();
+    const todasTarefas = this.taskService.getTarefas();
+
+    if (this.filtro === 'pendentes') {
+      this.tarefas = todasTarefas.filter(tarefa => !tarefa.concluida);
+    } else if (this.filtro === 'concluidas') {
+      this.tarefas = todasTarefas.filter(tarefa => tarefa.concluida);
+    } else {
+      this.tarefas = todasTarefas;
+    }
+  }
+
+  setFiltro(novoFiltro: string) {
+    this.filtro = novoFiltro;
+    this.atualizarLista();
   }
 }
